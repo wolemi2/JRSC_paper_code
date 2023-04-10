@@ -1,10 +1,10 @@
-#Title: Multivariate sensitivity analysis for a large-scale climate impact and adaptation model
+Multivariate sensitivity analysis for a large-scale climate impact and adaptation model
 Oyebamiji, O., Nemeth, C., Harrison, P., Dunford, R., & Cojocaru, G. (2022). Multivariate sensitivity analysis for a large-scale climate impact and adaptation model. arXiv preprint arXiv:2201.09681.
 
 #This main folder contains R scripts and data for producing results in this paper
-(i) The folder named as "Rcode" contains all the R codes for fitting and plotting results in the paper.
-(ii) The folder named as "data_in" contains all the data for the analysis.
-(iii) The folder named as "data_out" contains all the model outputs and results.
+(i) The folder named "Rcode" contains all the R codes for fitting and plotting results in the paper.
+(ii) The folder named "data_in" contains all the data for the analysis.
+(iii) The folder named "data_out" contains all the model outputs and results.
 (iv) 
 
 
@@ -33,26 +33,31 @@ nr <- r <- 6 #number of region
 3. EU_wide_MSGP.r - The main code for fitting the EU_wide MSGP emulator
 4. regional_MSGP.r - This code is for fitting the regional MSGP emulators.
 5. sparsity_MSGP.r - This code is for fitting the different levels of sparsity to the EU_wide MSGP emulator.
-6. fit_matern.r - This code fit the Matern covariance using the Wendland function.
+6. fit_matern.r - This code fits the Matern covariance using the Wendland function.
 7. regional_sensitivity.r - This code performs the regional-based sensitivity indices.
 8. scenario_sensitivity.r - This code performs the scenario-based sensitivity indices.
 9. sensitivity_func.r - Contains miscellaneous functions for sensitivity analysis.
-10. mcmc_func.r - This function is called by other routines (regional_MSGP and sparsity_MSGP) to fit the MSGP models and perform the crossvalidation.
+10. mcmc_func.r - This function is called by other routines (regional_MSGP and sparsity_MSGP) to fit the MSGP models and perform the cross-validation.
 11. lik.r - This file contains the likelihood functions.
 12. metropolis.r - This file contains the metropolis function.
-13. functions_libraries.r - This routine contain useful functions and R libraries.
+13. functions_libraries.r - This routine contains useful functions and R libraries.
 14. pred.r - This file contains the predictive function for the MSGP models.
 15. plot.r - The R code for plotting Figures 1, 8, 9, 10, 11, 12, 13, 14, and 15.
 16. diagnostic.r - Routine for plotting Diagnostics in Figures 6, 7, 16 and 17.
 17. test_cases.r - for fitting three test cases and plotting Figures 2, 3 and 4.
-18. dicekrig_mult.r - This code fit Standard GP using DiceKriging library and multivariate regression models to sample of EU_wide data.
+18. dicekrig_mult.r - This code fits Standard GP using the DiceKriging library and multivariate regression models to a sample of EU_wide data.
 
 
-#Examples on how to fit the models
-#######to fit EU_wide MSGP models and generate plots
-system.time(source("../JRSC_paper_code/Rcode/EU_wide_MSGP.r",echo=TRUE))
-####to fit regional models
-system.time(source("../JRSC_paper_code/Rcode/regional_MSGP.r",echo=TRUE))
+#Examples of how to fit the models
+#######fit EU_wide MSGP models and generate plots
+system.time(source("../JRSSC_paper_code/Rcode/EU_wide_MSGP.r",echo=TRUE))
+
+####fit regional models
+source("../JRSSC_paper_code/Rcode/regional_MSGP.r",echo=TRUE)
+
+###fit scenario-based MSGP emulators
+source("../JRSSC_paper_code/Rcode/scenario_MSGP.r",echo=TRUE)
+
 
 #The following R libraries are required
 gplots
@@ -70,7 +75,20 @@ TSP
 coda
 Matrix
 
-Dr. O.K. Oyebamiji
+#instruction for building myCor package on Linux/Window machine
+#Note: We do not test the function on the Window machine.
+########from R terminal build and install myCor library on a Linux machine
+#change the directory to where the "myCor" folder is located and use the command below
+R CMD build myCor
+R CMD INSTALL myCor_1.0.tar.gz
+
+##the "corr3.cpp" file can also be extracted and compiled directly from the R terminal by untar the 
+#"myCor_1.0.tar.gz", and using the command below.
+library(Rcpp)
+sourceCpp("corr3.cpp",showOutput=FALSE,verbose=FALSE)
+
+
+Dr O.K. Oyebamiji
 Flood and Water Management
 HR Wallingford
 Howbery Park, Wallingford

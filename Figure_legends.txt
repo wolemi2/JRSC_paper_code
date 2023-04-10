@@ -1,0 +1,57 @@
+Fig. 1. Histograms of spatially aggregated IAP2 simulation for the 18 selected outputs, averaged
+across the three emission scenarios and ten climate models for SSP1. Note: ($\textunderscore$) denotes
+unitless.
+
+Fig. 2. Main and total indices for the Sobol g− function using our algorithm. The red dots denote
+the analytical values.
+
+Fig. 3. Main and total indices for the multivariate test cases using arctangent temporal function
+which has 100 functional outputs with two input variables from a uniform distribution.
+Fig. 4. Main and total indices for the nonlinear model used in Xu et al. (2019b) using MSGP
+algorithm.
+
+Fig. 5. Sample output data from the IMPRESSIONS IAP2 simulation under RCP4.5 and
+HadGEM2-ES-RCA4 climate model and the classification of the five European regions used
+in the analyses.
+
+Fig. 6. Comparison of the multivariate GP emulator performance with IAP2 simulation for 500
+randomly sample points under the SSP4 scenario in the 2050s for EU-wide aggregated data;
+simulation (black) and emulator predictions (green) with 95\% C.I. (red). Note: the outputs have
+been normalised to have a zero mean and unit variance.
+
+Fig. 7. Comparison of the multivariate GP emulator performance with IAP2 simulation for 500
+randomly sample points under the SSP1 scenario in the 2050s for EU-wide aggregated data;
+simulation (black) and emulator predictions (green) with 95\% C.I. (red). Note: the outputs have
+been normalised to have a zero mean and unit variance.
+
+Fig. 8. Main effect plots for EU-wide aggregated data; simulation (black) and emulator predic-
+tions (green) with 95\% C.I. (red). Note: the outputs have been normalised to have a zero mean
+and unit variance.
+
+Fig. 9. Barplots of the posterior mean estimates of the first-order indices from the multivariate
+sensitivity analyses for some selected IAP2 outputs for EU-wide average data.
+
+Fig. 10. Barplots of the posterior mean estimates of the total indices from the multivariate
+sensitivity analyses for some selected IAP2 outputs for EU-wide average data.
+
+Fig. 11. Boxplots of the posterior mean for the multivariate generalised indices for EU-wide
+average data. Note: The left plots correspond to the standard approach while the right plots are
+computed from the vector projected method using affine transformation.
+
+Fig. 12. Boxplots of the posterior mean and their uncertainty estimates for the aggregated main
+indices for SSP1, SSP3, SSP4 and SSP5 respectively.
+
+Fig. 13. Main effect plots for EU-wide aggregated data; simulation (black) and emulator predic-
+tions (green) with 95% C.I. (red). Note: the outputs have been normalised to have a zero mean
+and unit variance.
+
+Fig. 14. Histograms of spatially aggregated IAP2 simulation for the 18 selected outputs, aver-
+aged across the three emission scenarios and ten climate models for SSP4. Note: ($\textunderscore$) denotes
+unitless.
+
+Fig. 15. Boxplots of the posterior mean and their uncertainty estimates for the aggregated main
+indices for Alpine, Northern, Atlantic, Continental and Southern regional averaged data.
+
+Fig. 16. Posterior summary showing the densities of each parameter for EU-wide data.
+
+Fig. 17. Posterior summary showing the trace plots of each parameter for EU-wide data.

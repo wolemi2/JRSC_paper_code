@@ -1,11 +1,11 @@
 #instruction for building myCor package on Linux/Window machine
-#Note: We do not test the function on Window machine.
-########from R terminal build and install myCor library on Linux machine
-#change directory to where "myCor" folder is located and use the command below
+#Note: We do not test the function on the Window machine.
+########from R terminal build and install myCor library on a Linux machine
+#change the directory to where the "myCor" folder is located and use the command below
 R CMD build myCor
 R CMD INSTALL myCor_1.0.tar.gz
 
-##the "corr3.cpp" file can also be extracted and compiled directly from R terminal by untar the 
+##the "corr3.cpp" file can also be extracted and compiled directly from the R terminal by untar the 
 #"myCor_1.0.tar.gz", and using the command below.
 library(Rcpp)
 sourceCpp("corr3.cpp",showOutput=FALSE,verbose=FALSE)
