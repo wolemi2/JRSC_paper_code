@@ -1,9 +1,9 @@
 ######### The main code for fitting the EU_wide MSGP emulator
-#system.time(source("../JRSC_paper_code/Rcode/EU_wide_MSGP.r",echo=TRUE))
+#system.time(source("../JRSSC_paper_code/Rcode/EU_wide_MSGP.r",echo=TRUE))
 rm(list=ls())
 set.seed(15)
 
-#set the path to the main R code directory eg ../JRSC_paper_code
+#set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
 
@@ -14,7 +14,7 @@ source(file.path(path01,"Rcode","mcmc_func.r"),echo=TRUE)
 source(file.path(path01,"Rcode","metropolis.r"),echo=TRUE)
 source(file.path(path01,"Rcode","pred.r"),echo=TRUE)
 
-#source MCMC initiliaztion parameters
+#source MCMC initialization parameters
 sparsity <- 0.9
 source(file.path(path01,"Rcode","config.r"),echo=TRUE)
 #dir_create(outdir)

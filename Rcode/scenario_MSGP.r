@@ -1,7 +1,7 @@
-########## This code is for fitting the different levels of sparsity to the EU_wide MSGP emulator
-#system.time(source("../JRSSC_paper_code/Rcode/sparsity_MSGP.r",echo=TRUE))
+########## The code is for fitting the scenario-based MSGP emulators
+#system.time(source("../JRSSC_paper_code/Rcode/scenario_MSGP.r",echo=TRUE))
 rm(list=ls())
-
+set.seed(15)
 #set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
@@ -12,25 +12,29 @@ source(file.path(path01,"Rcode","lik.r"),echo=TRUE)
 source(file.path(path01,"Rcode","mcmc_func.r"),echo=TRUE)
 source(file.path(path01,"Rcode","metropolis.r"),echo=TRUE)
 source(file.path(path01,"Rcode","pred.r"),echo=TRUE)
-listof_region <- c("EU_wide","Alpine","Northern","Atlantic","Continental","Southern")
+
+sparsity <- 0.9 #fix
+sc <- 4
+listof_scenario <- c("SSP1","SSP3","SSP4","SSP5")
 sp_levels <- c(.99,.95,.90,.80)
-region <- "EU_wide"
+
+#source MCMC initialization parameters
+source(file.path(path01,"Rcode","config.r"),echo=TRUE)
 
 #Read in data
 XX <- data.matrix(fread(file.path(path01,"data_in","Xsen0.txt"),header=TRUE))# ndim times (N*p) matrix
 #convert to array
-N <- 2000; r <- 6; ndim <- nrow(XX); p <- 24; m <- q <- 18; ns <- 600
+N <- 2000; r <- 6; ndim <- nrow(XX); m <- q <- 18; p <- 24; ns <- 600
 Xsen0 <- array(XX,c(ndim,N,p))
-YY <- data.matrix(fread(file.path(path01,"data_in","Ysen0.txt"),header=TRUE))# ndim times (N*m*r) matrix
+YY <- data.matrix(fread(file.path(path01,"data_in","scenario.txt"),header=TRUE))# ndim times (N*m*sc) matrix
 Ysen0 <- array(YY,c(ndim,N,m,r))
-rr <- data.matrix(read.table(file.path(path01,"data_in","sce_range.txt"),sep=",",header=FALSE)) #scenario ranges
+#rr <- data.matrix(read.table(file.path(path01,"data_in","sce_range.txt"),sep=",",header=FALSE)) #scenario ranges
 rm(XX, YY)
-listof_region <- c("EU_wide","Alpine","Northern","Atlantic","Continental","Southern")
 
+#Fit 4 scenario-based models, fix sparsity to 0.90
 out <- out2 <- out3 <- list()
-#fit different sparsity levels, fix the region to "EU_wide"
 
-t0 <- match(region,listof_region)
+for(t0 in 1:sc){
 s <- sample(1:N,ns)
 	dat0 <- inp0 <- dat00 <- list()
 	for(num in 1:ndim){
@@ -40,7 +44,7 @@ s <- sample(1:N,ns)
 	inp1 <- list()
 	inp0 <- ff(Xsen0[,s,])
 	for(i in 1:ndim){
-		 inp1[[i]]=inp0[i,,]
+		 inp1[[i]] <- inp0[i,,]
 	}
 	#
 	inptest <- list()
@@ -54,19 +58,18 @@ s <- sample(1:N,ns)
 	train <- abind(dat0,along=1)
 	sc1 <- apply(train,2,sd)
 	sc2 <- apply(train,2,mean)
-	Ytrain <<- scale(train,center=sc2,scale=sc1)
-	
-for(w0 in 1:length(sp_levels)){
-sparsity <- sp_levels[w0]
-source(file.path(path01,"Rcode","config.r"),echo=TRUE)
-likelihood <- lik(cf)
+	Ytrain <- scale(train,center=sc2,scale=sc1)
+	likelihood <- lik(cf)
 posterior <- likelihood$post
 #Fitting the models
-print(w0)
-	   #create output dir
-   outdir <- file.path(path01,"data_out",paste("Sparsity",sparsity*100,sep="_"))
-   dir_create(outdir)
-out2[[w0]] <- mcmc_func(sparsity)
+	print(t0)
+	region <- listof_scenario[t0]
+	#create output dir
+	outdir <- file.path(path01,"data_out",gsub("t0",t0,listof_scenario[t0]))
+	 dir_create(outdir)
+	out[[t0]] <- mcmc_func(sparsity)
 }
 
-#####END
+#perform scenario sensitivity
+system.time(source(file.path(path01,"Rcode","scenario_sensitivity.r"),echo=TRUE))
+

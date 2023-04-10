@@ -1,6 +1,6 @@
 #######This R code performs sensitivity analysis for the EU_wide MSGP emulators
 
-#set the path to the main R code directory eg ../JRSC_paper_code
+#set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
 

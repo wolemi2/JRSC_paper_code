@@ -1,4 +1,4 @@
-#this function fit the MSGP model and perform the crossvalidation
+#this function fit the MSGP model and performs the cross-validation
 mcmc_func <- function(sparsity){
   ###MCMC fitting
 	result <- GP(NIter,Ytrain,Xtrain,Phi)

@@ -1,4 +1,4 @@
-###Fit matern covariance using Wendland function
+###Fit Matern covariance using the Wendland function
 rm(list=ls())
 
 #system.time(source("Rcode/fit_matern.r",echo=TRUE))

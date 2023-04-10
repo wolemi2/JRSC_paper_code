@@ -1,7 +1,7 @@
 ########R code for plotting Figures 1, 8, 9, 10, 11, 12, 13, 14, 15
 
-####set the path to the main R code directory eg ../JRSC_paper_code
-source("../JRSC_paper_code/main.r",echo=TRUE)
+####set the path to the main R code directory eg ../JRSSC_paper_code
+source("../JRSSC_paper_code/main.r",echo=TRUE)
 path01 <- path0
 source(file.path(path01,"Rcode","functions_libraries.r"),echo=TRUE)
 
@@ -128,15 +128,14 @@ load(file.path(path01,"data_out","scenario_based_sensitivity","sce_mod"))#scenar
 G <- list()
 for(j in 1:length(sce_mod)){
 	S <- sen_fun(sce_mod[[j]])
-	M1 <- S[[1]]; M2 <- S[[2]];M3 <- S[[3]]; M4 <- S[[4]];M5 <- S[[5]]; M6 <- S[[6]]
-	G[[j]] <-  list(rowMeans(M2[[1]]),rowMeans(M2[[2]]),rowMeans(M2[[3]]))  #M5
+	G[[j]] <-  S[[5]]
 }
 #
-png(file.path(path01,"data_out","scenario_based_sensitivity","ff2.png"), height =10, width=12,units="in",res=400)
+png(file.path(path01,"data_out","scenario_based_sensitivity","f12.png"), height =10, width=12,units="in",res=400)
 par(mfrow=c(2,2))
 par(mai=c(0.25,1.5,0.5,0.2)+0.0)
 for(k in 1:length(G)){
-	xvals=barplot2((G[[k]][[1]]),las=2,xlab=" ",ylab="Sensitivity indices",cex=1.35,main=nam00[1],cex.lab=1.5,col="green",cex.main=1.5,cex.axis=1.5,cex.names=1.5,cex=1.5,xaxt="n",plot.ci=TRUE,ci.u=G[[k]][[2]],ci.l=G[[k]][[3]],plot.grid=TRUE,ylim=range(G))
+	xvals=barplot2((G[[k]][[1]]),las=2,xlab=" ",ylab="Sensitivity indices",cex=1.35,main=nam00[k],cex.lab=1.5,col="green",cex.main=1.5,cex.axis=1.5,cex.names=1.5,cex=1.5,xaxt="n",plot.ci=TRUE,ci.u=G[[k]][[2]],ci.l=G[[k]][[3]],plot.grid=TRUE,ylim=range(G))
 	text(xvals,par("usr")[3]-.005,srt=300,adj=1,labels=lab0,xpd=TRUE,cex=1.45,col="blue",srt=45)
 }
 dev.off()

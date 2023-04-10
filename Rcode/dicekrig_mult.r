@@ -1,7 +1,7 @@
-######This code fit Standard GP using DiceKriging library and multivariate regression models to sample of EU_wide data 
+######This code fits Standard GP using DiceKriging library and multivariate regression models to a sample of EU_wide data 
 rm(list=ls())
 
-#set the path to the main R code directory eg ../JRSC_paper_code
+#set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
 

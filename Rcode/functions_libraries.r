@@ -98,11 +98,6 @@ truncpow <- function(d, cutoff, alpha = 1){
 }
 add <- function(x) Reduce("+", x)
 
-## (21) in Gneiting (2002)
-bohman <- function(d, cutoff){
-  r <- d/cutoff
-  return(((1-r)*cos(pi*r) + sin(pi*r)/pi) * (r <= 1)) 
-}
 find.tau <-
 function (den, dim) 
 {

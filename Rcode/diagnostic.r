@@ -1,6 +1,6 @@
 ###Routine for plotting Diagnostics in Figures 6, 7, 16 and 17.
 set.seed(10)
-#set the path to the main R code directory eg ../JRSC_paper_code
+#set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
 

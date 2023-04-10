@@ -1,8 +1,8 @@
-########## The main code is for fitting the regional and EU_wide MSGP emulators
-#system.time(source("../JRSC_paper_code/Rcode/regional_MSGP.r",echo=TRUE))
+########## The code is for fitting the regional MSGP emulators
+#system.time(source("../JRSSC_paper_code/Rcode/regional_MSGP.r",echo=TRUE))
 rm(list=ls())
 
-#set the path to the main R code directory eg ../JRSC_paper_code
+#set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
 
@@ -17,7 +17,7 @@ sparsity <- 0.9 #fix
 listof_region <- c("EU_wide","Alpine","Northern","Atlantic","Continental","Southern")
 sp_levels <- c(.99,.95,.90,.80)
 
-#source MCMC initilization parameters
+#source MCMC initialization parameters
 source(file.path(path01,"Rcode","config.r"),echo=TRUE)
 
 #Read in data

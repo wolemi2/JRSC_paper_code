@@ -2,7 +2,7 @@
 rm(list=ls())
 set.seed(11)
 library(sensitivity)
-#set the path to the main R code directory eg ../JRSC_paper_code
+#set the path to the main R code directory eg ../JRSSC_paper_code
 source("main.r",echo=TRUE)
 path01 <- path0
 
